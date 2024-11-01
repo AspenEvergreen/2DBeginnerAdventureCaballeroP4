@@ -5,12 +5,20 @@ using UnityEngine.InputSystem;
 
 public class ActualPlayerController : MonoBehaviour
 {
-    public float speed = 3.0
+    public float speed = 3.0f;
+
+    public int timeInvincible = 2;
     public int maxHealth = 5;
+    public int health { get { return currentHealth; } }
     int currentHealth;
+
+    bool isInvincible;
+    float invincibleTimer;
+
     Rigidbody2D rigidbody2d;
     float horizontal;
     float vertical;
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,20 +32,40 @@ public class ActualPlayerController : MonoBehaviour
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
-    }
 
-    void FixedUpdate()
-    {
-        Vector2 position = rigidbody2d.position;
-        position.x = position.x + speed * horizontal * Time.deltaTime;
-        position.y = position.y + speed * vertical * Time.deltaTime; ;
-
-        rigidbody2d.MovePosition(position);
+        if (isInvincible)
+        {
+            invincibleTimer -= Time.deltaTime;
+            if (invincibleTimer < 0)
+            {
+                isInvincible = false;
+            }
+        }
     }
+        void FixedUpdate()
+        {
+            Vector2 position = rigidbody2d.position;
+            position.x = position.x + speed * horizontal * Time.deltaTime;
+            position.y = position.y + speed * vertical * Time.deltaTime; ;
 
-    void ChangeHealth(int amount)
-    {
-        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-        Debug.Log(currentHealth + "/" + maxHealth);
-    }
+            rigidbody2d.MovePosition(position);
+        }
+
+        public void ChangeHealth(int amount)
+        {
+            {
+            if (amount < 0)
+                {
+                if (isInvincible)
+                    {
+                        return;
+                    }
+                }
+            isInvincible = true;
+            invincibleTimer = timeInvincible;
+            }
+            currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+            Debug.Log(currentHealth + "/" + maxHealth);
+        }
+    
 }
