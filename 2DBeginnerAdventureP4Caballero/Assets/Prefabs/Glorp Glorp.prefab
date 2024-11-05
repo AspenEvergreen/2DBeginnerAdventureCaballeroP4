@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8993144271457680010}
   - component: {fileID: 5588158309465475881}
   - component: {fileID: 9034066276922594916}
+  - component: {fileID: 7223515280960351040}
   m_Layer: 0
   m_Name: Glorp Glorp
   m_TagString: Untagged
@@ -102,6 +103,7 @@ MonoBehaviour:
   speed: 3
   timeInvincable: 2
   maxHealth: 5
+  projectilePrefab: {fileID: 0}
 --- !u!50 &5588158309465475881
 Rigidbody2D:
   serializedVersion: 4
@@ -174,3 +176,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2945721, y: 0.6785262}
   m_EdgeRadius: 0
+--- !u!95 &7223515280960351040
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4820511113224600097}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 15c93a869dd14df478b6eebf0c4a9b3d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
