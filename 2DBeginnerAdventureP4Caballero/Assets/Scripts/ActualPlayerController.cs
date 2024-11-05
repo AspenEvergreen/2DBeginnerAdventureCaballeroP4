@@ -7,24 +7,27 @@ public class ActualPlayerController : MonoBehaviour
 {
     public float speed = 3.0f;
 
-    public int timeInvincible = 2;
+    public float timeInvincable = 2;
+
     public int maxHealth = 5;
+
+    public GameObject projectilePrefab;
     public int health { get { return currentHealth; } }
     int currentHealth;
 
     bool isInvincible;
-    float invincibleTimer;
+    float invincableTimer;
 
     Rigidbody2D rigidbody2d;
     float horizontal;
     float vertical;
-
 
     // Start is called before the first frame update
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
+
     }
 
     // Update is called once per frame
@@ -35,37 +38,47 @@ public class ActualPlayerController : MonoBehaviour
 
         if (isInvincible)
         {
-            invincibleTimer -= Time.deltaTime;
-            if (invincibleTimer < 0)
+            invincableTimer -= Time.deltaTime;
+            if(invincableTimer < 0)
             {
                 isInvincible = false;
             }
         }
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            Launch();
+        }
     }
-        void FixedUpdate()
-        {
-            Vector2 position = rigidbody2d.position;
-            position.x = position.x + speed * horizontal * Time.deltaTime;
-            position.y = position.y + speed * vertical * Time.deltaTime; ;
 
-            rigidbody2d.MovePosition(position);
-        }
+    void FixedUpdate()
+    {
+        Vector2 position = rigidbody2d.position;
+        position.x = position.x + speed * horizontal * Time.deltaTime;
+        position.y = position.y + speed * vertical * Time.deltaTime; ;
 
-        public void ChangeHealth(int amount)
+        rigidbody2d.MovePosition(position);
+    }
+
+    public void ChangeHealth(int amount)
+    {
+        if(amount < 0)
         {
+            if(isInvincible)
             {
-            if (amount < 0)
-                {
-                if (isInvincible)
-                    {
-                        return;
-                    }
-                }
-            isInvincible = true;
-            invincibleTimer = timeInvincible;
+                return;
             }
-            currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-            Debug.Log(currentHealth + "/" + maxHealth);
+            isInvincible = true;
+            invincableTimer = timeInvincable;
         }
-    
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        UIHealthBar.instance.SetValue(currentHealth/(float)maxHealth);
+    }
+
+    void Launch()
+    {
+        GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+        Projectile projectile = projectileObject.GetComponent<Projectile>();
+       // projectile.Launch(lookDirection, 300);
+        // animator.SetTrigger("Launch");
+    }
 }

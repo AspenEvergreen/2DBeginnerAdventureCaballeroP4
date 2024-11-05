@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         ActualPlayerController controller = other.GetComponent<ActualPlayerController>();
         if (controller != null)
@@ -13,10 +13,8 @@ public class NewBehaviourScript : MonoBehaviour
             {
                 controller.ChangeHealth(1);
                 Destroy(gameObject);
-            }
 
-            
-            
+            }
         }
     }
 }

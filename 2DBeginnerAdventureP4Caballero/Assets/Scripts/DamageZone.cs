@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class DamageZone : MonoBehaviour
 {
-
-    void OnTriggerEnter2D(Collider2D other)
+   void OnTriggerStay2D(Collider2D other)
     {
-       ActualPlayerController controller = other.GetComponent<ActualPlayerController>();
+        ActualPlayerController controller = other.GetComponent<ActualPlayerController>();
+
+        if(controller != null)
         {
-            if (controller != null)
-            {
-                controller.ChangeHealth(-1);
-            }
+            controller.ChangeHealth(-1);
         }
     }
 }
