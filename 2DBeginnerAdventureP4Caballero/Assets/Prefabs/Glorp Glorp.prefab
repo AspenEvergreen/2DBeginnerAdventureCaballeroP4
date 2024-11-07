@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5588158309465475881}
   - component: {fileID: 9034066276922594916}
   - component: {fileID: 7223515280960351040}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Glorp Glorp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
