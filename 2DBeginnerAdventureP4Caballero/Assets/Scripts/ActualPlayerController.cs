@@ -96,6 +96,7 @@ public class ActualPlayerController : MonoBehaviour
      
      Projectile projectile = projectileObject.GetComponent<Projectile>();
      projectile.Launch(lookDirection, 300);
+    
      
      animator.SetTrigger("Launch");
     }
