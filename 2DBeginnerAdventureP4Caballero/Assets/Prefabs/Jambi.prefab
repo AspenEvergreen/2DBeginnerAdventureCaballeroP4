@@ -346,6 +346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayTime: 4
   dialogBox: {fileID: 3877185519165909165}
+  talk: {fileID: 8300000, guid: 173a14cf06354c643b46b235f2a4f974, type: 3}
 --- !u!1 &7523956550124574469
 GameObject:
   m_ObjectHideFlags: 0

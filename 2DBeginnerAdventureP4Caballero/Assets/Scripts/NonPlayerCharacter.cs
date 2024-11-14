@@ -8,12 +8,15 @@ public class NonPlayerCharacter : MonoBehaviour
     public GameObject dialogBox;
     float timerDisplay;
 
+    //AudioSource audioSource;
+   // public AudioClip talk;
 
     // Start is called before the first frame update
     void Start()
     {
         dialogBox.SetActive(false);
         timerDisplay = -1.0f;
+       // audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -33,5 +36,11 @@ public class NonPlayerCharacter : MonoBehaviour
     {
         timerDisplay = displayTime;
         dialogBox.SetActive(true);
+
+        //play audio when talked to
+       // if(dialogBox.GetComponent<AudioSource>() != true)
+        //{
+          //  audioSource.PlayOneShot(talk);
+        //}
     }
 }

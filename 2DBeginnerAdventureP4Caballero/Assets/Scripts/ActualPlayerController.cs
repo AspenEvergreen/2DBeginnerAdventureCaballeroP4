@@ -22,9 +22,13 @@ public class ActualPlayerController : MonoBehaviour
     float horizontal;
     float vertical;
 
-    // animation, plz finish
+    // animation
     Animator animator;
     Vector2 lookDirection = new Vector2(1, 0);
+
+    AudioSource audioSource;
+    public AudioClip throwSound;
+    public AudioClip hitSound;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +36,8 @@ public class ActualPlayerController : MonoBehaviour
         rigidbody2d = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
         animator = GetComponent<Animator>();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -99,6 +105,7 @@ public class ActualPlayerController : MonoBehaviour
             }
             isInvincible = true;
             invincableTimer = timeInvincable;
+            PlaySound(hitSound);
         }
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         UIHealthBar.instance.SetValue(currentHealth/(float)maxHealth);
@@ -113,5 +120,11 @@ public class ActualPlayerController : MonoBehaviour
     
      
      animator.SetTrigger("Launch");
+        PlaySound(throwSound);
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
     }
 }

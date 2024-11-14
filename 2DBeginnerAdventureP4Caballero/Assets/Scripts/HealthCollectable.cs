@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
+    public AudioClip collectedClip;
+
     void OnTriggerEnter2D(Collider2D other)
     {
         ActualPlayerController controller = other.GetComponent<ActualPlayerController>();
@@ -14,6 +16,7 @@ public class NewBehaviourScript : MonoBehaviour
                 controller.ChangeHealth(1);
                 Destroy(gameObject);
 
+                controller.PlaySound(collectedClip);
             }
         }
     }

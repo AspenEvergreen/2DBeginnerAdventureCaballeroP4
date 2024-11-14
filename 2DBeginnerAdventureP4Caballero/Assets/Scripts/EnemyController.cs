@@ -19,6 +19,9 @@ public class EnemyController : MonoBehaviour
     int direction = 1;
 
     Animator animator;
+    AudioSource audioSource;
+
+    public AudioClip robotFixed;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +29,7 @@ public class EnemyController : MonoBehaviour
         rigidbody2d = GetComponent<Rigidbody2D>();
         timer = changeTime;
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -83,5 +87,9 @@ public class EnemyController : MonoBehaviour
         rigidbody2d.simulated = false;
         animator.SetTrigger("Fixed");
         smokeEffect.Stop();
+        audioSource.Stop();
+        audioSource.PlayOneShot(robotFixed);
+
+
     }
 }
