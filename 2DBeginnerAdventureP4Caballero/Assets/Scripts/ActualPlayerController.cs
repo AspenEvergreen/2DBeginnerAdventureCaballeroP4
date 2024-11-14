@@ -70,6 +70,8 @@ public class ActualPlayerController : MonoBehaviour
             Launch();
         }
 
+        //
+
         if(Input.GetKey(KeyCode.X))
         {
             RaycastHit2D hit = Physics2D.Raycast(rigidbody2d.position + Vector2.up * 0.2f, lookDirection, 2.0f, LayerMask.GetMask("NPC"));
@@ -85,6 +87,8 @@ public class ActualPlayerController : MonoBehaviour
 
     }
 
+    //moving
+
     void FixedUpdate()
     {
         Vector2 position = rigidbody2d.position;
@@ -93,6 +97,8 @@ public class ActualPlayerController : MonoBehaviour
 
         rigidbody2d.MovePosition(position);
     }
+    
+    //hp
 
     public void ChangeHealth(int amount)
     {
@@ -111,6 +117,8 @@ public class ActualPlayerController : MonoBehaviour
         UIHealthBar.instance.SetValue(currentHealth/(float)maxHealth);
     }
 
+    //gear
+
     void Launch()
     {
      GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
@@ -122,6 +130,8 @@ public class ActualPlayerController : MonoBehaviour
      animator.SetTrigger("Launch");
         PlaySound(throwSound);
     }
+
+    // idk
 
     public void PlaySound(AudioClip clip)
     {

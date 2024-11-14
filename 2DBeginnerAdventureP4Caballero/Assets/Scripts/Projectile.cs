@@ -23,6 +23,7 @@ public class Projectile : MonoBehaviour
     public void Launch(Vector2 direction, float force)
     {
         rigidbody2d.AddForce(direction * force);
+        
     }
 
     void OnCollisionEnter2D(Collision2D other)
